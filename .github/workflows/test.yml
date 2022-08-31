@@ -17,13 +17,12 @@ jobs:
         uses: permasigner/action@main
         with:
           input: "${GITHUB_WORKSPACE}/Taurine.ipa"
-          output: "${GITHUB_WORKSPACE}/Taurine.deb"
       
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: TaurineTest-Package-macOS.deb
-          path: ${GITHUB_WORKSPACE}/Taurine.deb
+          path: ${GITHUB_WORKSPACE}/permasigner-out/*
           
   test-source-macos:
     runs-on: macos-latest
@@ -36,14 +35,13 @@ jobs:
         uses: permasigner/action@main
         with:
           input: "${GITHUB_WORKSPACE}/Taurine.ipa"
-          output: "${GITHUB_WORKSPACE}/Taurine.deb"
           source: true
       
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: TaurineTest-Source-macOS.deb
-          path: ${GITHUB_WORKSPACE}/Taurine.deb
+          path: ${GITHUB_WORKSPACE}/permasigner-out/*
           
   test-package-linux:
     runs-on: ubuntu-latest
@@ -56,13 +54,12 @@ jobs:
         uses: permasigner/action@main
         with:
           input: "${GITHUB_WORKSPACE}/Taurine.ipa"
-          output: "${GITHUB_WORKSPACE}/Taurine.deb"
       
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: TaurineTest-Package-Linux.deb
-          path: ${GITHUB_WORKSPACE}/Taurine.deb
+          path: ${GITHUB_WORKSPACE}/permasigner-out/*
           
   test-source-linux:
     runs-on: ubuntu-latest
@@ -75,12 +72,11 @@ jobs:
         uses: permasigner/action@main
         with:
           input: "${GITHUB_WORKSPACE}/Taurine.ipa"
-          output: "${GITHUB_WORKSPACE}/Taurine.deb"
           source: true
       
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: TaurineTest-Source-Linux.deb
-          path: ${GITHUB_WORKSPACE}/Taurine.deb
+          path: ${GITHUB_WORKSPACE}/permasigner-out/*
     

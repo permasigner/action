@@ -7,9 +7,9 @@ inputs:
     description: 'Path to an IPA to permasign'
     required: true
   output:
-    description: 'Output path of the deb file'
+    description: 'Output directory of the deb file'
     required: false
-    default: ${GITHUB_WORKSPACE}/app.deb
+    default: ${GITHUB_WORKSPACE}/permasigner-out
   source:
     description: 'Run from source instead of package'
     required: false
@@ -25,26 +25,23 @@ runs:
         packages: ldid python3 git
         cache: true
         mirror: 'https://procursus.itsnebula.net/'
+        
+    - name: Install Linux dependencies
+      if: runner.os == 'Linux'
+      shell: bash
+      run: |
+        sudo apt install git python3 python3-pip
     
     - name: Install Permasigner
       shell: bash
       run: |
-        # Install with apt just in case on linux
-        sudo apt install git python3
-        python3 -m ensurepip
-        
         if [ "${{ inputs.source }}" == "true" ]; then
             python3 -m pip install -U git+https://github.com/permasigner/permasigner
         else
             python3 -m pip install permasigner
         fi
         
-        if [ "${{ inputs.output }}" != "${GITHUB_WORKSPACE}/app.deb" ]; then
-            # In this case, we are using a custom output
-            python3 -m permasigner -p ${{ inputs.input }} -o ${{ inputs.output }} -d
-        else
-            python3 -m permasigner -p ${{ inputs.input }} -o ${GITHUB_WORKSPACE}/output/ -d
-        fi
+        python3 -m permasigner -p ${{ inputs.input }} -o ${{ inputs.output }} -d
 
 branding:
   icon: pen
