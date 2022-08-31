@@ -1,0 +1,86 @@
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+  pull_request: 
+  
+jobs:
+  test-package-macos:
+    runs-on: macos-latest
+    steps:
+      - name: Download test IPA
+        run: |
+          wget -nc -P ${GITHUB_WORKSPACE}/Taurine.ipa https://github.com/Odyssey-Team/Taurine/releases/download/1.1.6/Taurine-1.1.6.ipa
+        
+      - name: Run local GitHub action
+        uses: permasigner/action@main
+        with:
+          input: "${GITHUB_WORKSPACE}/Taurine.ipa"
+          output: "${GITHUB_WORKSPACE}/Taurine.deb"
+      
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: TaurineTest-Package-macOS.deb
+          path: ${GITHUB_WORKSPACE}/Taurine.deb
+          
+  test-source-macos:
+    runs-on: macos-latest
+    steps:
+      - name: Download test IPA
+        run: |
+          wget -nc -P ${GITHUB_WORKSPACE}/Taurine.ipa https://github.com/Odyssey-Team/Taurine/releases/download/1.1.6/Taurine-1.1.6.ipa
+        
+      - name: Run local GitHub action
+        uses: permasigner/action@main
+        with:
+          input: "${GITHUB_WORKSPACE}/Taurine.ipa"
+          output: "${GITHUB_WORKSPACE}/Taurine.deb"
+          source: true
+      
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: TaurineTest-Source-macOS.deb
+          path: ${GITHUB_WORKSPACE}/Taurine.deb
+          
+  test-package-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download test IPA
+        run: |
+          wget -nc -P ${GITHUB_WORKSPACE}/Taurine.ipa https://github.com/Odyssey-Team/Taurine/releases/download/1.1.6/Taurine-1.1.6.ipa
+        
+      - name: Run local GitHub action
+        uses: permasigner/action@main
+        with:
+          input: "${GITHUB_WORKSPACE}/Taurine.ipa"
+          output: "${GITHUB_WORKSPACE}/Taurine.deb"
+      
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: TaurineTest-Package-Linux.deb
+          path: ${GITHUB_WORKSPACE}/Taurine.deb
+          
+  test-source-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download test IPA
+        run: |
+          wget -nc -P ${GITHUB_WORKSPACE}/Taurine.ipa https://github.com/Odyssey-Team/Taurine/releases/download/1.1.6/Taurine-1.1.6.ipa
+        
+      - name: Run local GitHub action
+        uses: permasigner/action@main
+        with:
+          input: "${GITHUB_WORKSPACE}/Taurine.ipa"
+          output: "${GITHUB_WORKSPACE}/Taurine.deb"
+          source: true
+      
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: TaurineTest-Source-Linux.deb
+          path: ${GITHUB_WORKSPACE}/Taurine.deb
+    
