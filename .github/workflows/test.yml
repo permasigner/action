@@ -1,9 +1,19 @@
+name: Test action
+
 on:
   push:
+    paths-ignore:
+      - 'README.md'
     branches:
       - main
+  
   workflow_dispatch:
-  pull_request: 
+
+  pull_request:
+    paths-ignore:
+      - 'README.md'
+    branches:
+      - main
   
 jobs:
   test-package-macos:
