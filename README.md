@@ -1,7 +1,5 @@
-# Permasigner Action
-
 <p align="center">
-  <img src="https://static.itsnebula.net/permasigner-title.png" width="240" />
+  <img src="https://static.itsnebula.net/permasigner-action-title.png" width="240" />
 </p>
 
 <p align="center">
