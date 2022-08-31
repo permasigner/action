@@ -69,5 +69,5 @@ runs:
         python3 -m permasigner -p ${{ inputs.input }} -o ${{ inputs.output }} -d
 
 branding:
-  icon: pen
+  icon: box
   color: purple
