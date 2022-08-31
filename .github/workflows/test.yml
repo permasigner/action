@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Download test IPA
         run: |
-          wget -nc -P ${GITHUB_WORKSPACE}/Taurine.ipa https://github.com/Odyssey-Team/Taurine/releases/download/1.1.6/Taurine-1.1.6.ipa
+          wget -nc -O ${GITHUB_WORKSPACE}/Taurine.ipa https://github.com/Odyssey-Team/Taurine/releases/download/1.1.6/Taurine-1.1.6.ipa
         
       - name: Run local GitHub action
         uses: permasigner/action@main
@@ -30,7 +30,7 @@ jobs:
     steps:
       - name: Download test IPA
         run: |
-          wget -nc -P ${GITHUB_WORKSPACE}/Taurine.ipa https://github.com/Odyssey-Team/Taurine/releases/download/1.1.6/Taurine-1.1.6.ipa
+          wget -nc -O ${GITHUB_WORKSPACE}/Taurine.ipa https://github.com/Odyssey-Team/Taurine/releases/download/1.1.6/Taurine-1.1.6.ipa
         
       - name: Run local GitHub action
         uses: permasigner/action@main
@@ -50,7 +50,7 @@ jobs:
     steps:
       - name: Download test IPA
         run: |
-          wget -nc -P ${GITHUB_WORKSPACE}/Taurine.ipa https://github.com/Odyssey-Team/Taurine/releases/download/1.1.6/Taurine-1.1.6.ipa
+          wget -nc -O ${GITHUB_WORKSPACE}/Taurine.ipa https://github.com/Odyssey-Team/Taurine/releases/download/1.1.6/Taurine-1.1.6.ipa
         
       - name: Run local GitHub action
         uses: permasigner/action@main
@@ -69,7 +69,7 @@ jobs:
     steps:
       - name: Download test IPA
         run: |
-          wget -nc -P ${GITHUB_WORKSPACE}/Taurine.ipa https://github.com/Odyssey-Team/Taurine/releases/download/1.1.6/Taurine-1.1.6.ipa
+          wget -nc -O ${GITHUB_WORKSPACE}/Taurine.ipa https://github.com/Odyssey-Team/Taurine/releases/download/1.1.6/Taurine-1.1.6.ipa
         
       - name: Run local GitHub action
         uses: permasigner/action@main
