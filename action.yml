@@ -1,0 +1,50 @@
+name: 'Permasigner'
+description: 'Permanently sign an IPA and generate a deb, useful for CI/CD'
+author: 'Nebula'
+
+inputs:
+  input:
+    description: 'Path to an IPA to permasign'
+    required: true
+  output:
+    description: 'Output path of the deb file'
+    required: false
+    default: ${GITHUB_WORKSPACE}/app.deb
+  source:
+    description: 'Run from source instead of package'
+    required: false
+    default: false
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Procursus
+      if: runner.os == 'macOS'
+      uses: beerpiss/procursus-action@v1
+      with:
+        packages: ldid python3 git
+        cache: true
+        mirror: 'https://procursus.itsnebula.net/'
+    
+    - name: Install Permasigner
+      shell: bash
+      run: |
+        # Install with apt just in case on linux
+        sudo apt install git python3
+        
+        if [ "${{ inputs.source }}" == "true" ]; then
+            python3 -m pip install -U git+https://github.com/permasigner/permasigner
+        else
+            python3 -m pip install permasigner
+        fi
+        
+        if [ "${{ inputs.output }}" != "${GITHUB_WORKSPACE}/app.deb" ]; then
+            # In this case, we are using a custom output
+            python3 -m permasigner -p ${{ inputs.input }} -o ${{ inputs.output }} -d
+        else
+            python3 -m permasigner -p ${{ inputs.input }} -o ${GITHUB_WORKSPACE}/output/ -d
+        fi
+
+branding:
+  icon: pen
+  color: purple
