@@ -15,7 +15,7 @@ inputs:
     description: 'Run from source instead of package'
     required: false
     default: false
-  enitlements:
+  entitlements:
     description: 'Path to an entitlements file to add to the binary'
     required: false
     default: "null"
