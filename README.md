@@ -35,7 +35,7 @@ First of all, make sure you're using a Linux or macOS runner, Windows will not w
 
 ```yaml
 - name: Run Permasigner
-  uses: permasigner/action@v1
+  uses: permasigner/action@v1.0.0
   with:
     # Specify your IPA as an input
     input: "${GITHUB_WORKSPACE}/MyApp.ipa"
