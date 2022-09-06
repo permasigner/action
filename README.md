@@ -35,7 +35,7 @@ First of all, make sure you're using a Linux or macOS runner, Windows will not w
 
 ```yaml
 - name: Run Permasigner
-  uses: permasigner/action@v1.0.0
+  uses: permasigner/action@v1.1.0
   with:
     # Specify your IPA as an input
     input: "${GITHUB_WORKSPACE}/MyApp.ipa"
@@ -61,7 +61,8 @@ Of course, make a fork, make your changes, and make a pull request as usual!
 
 # Credits
 
-- [Beerpsi](https://github.com/beerpiss) for the Install Procursus action
+- [Beerpsi](https://github.com/beerpiss) for the Install Procursus action as the reference for this action
+- [Keto](https://github.com/TheRealKeto) for bringing up that Procursus isn't really necessary
 
 # License
 
