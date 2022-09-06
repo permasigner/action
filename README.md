@@ -62,7 +62,7 @@ Of course, make a fork, make your changes, and make a pull request as usual!
 # Credits
 
 - [Beerpsi](https://github.com/beerpiss) for the Install Procursus action as the reference for this action
-- [Keto](https://github.com/TheRealKeto) for bringing up that Procursus isn't really necessary
+- [Keto](https://github.com/TheRealKeto) for bringing up that Procursus isn't really necessary, and removing it in favor of Set up Python decreases build times
 
 # License
 
