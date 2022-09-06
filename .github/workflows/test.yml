@@ -1,92 +1,39 @@
-name: Test action
+name: Tests
 
 on:
   push:
-    paths-ignore:
-      - 'README.md'
     branches:
       - main
-  
+    paths-ignore:
+      - 'README.md'
+      - 'LICENSE'
+  pull_request:
+    branches:
+      - main
+    paths-ignore:
+      - 'README.md'
+      - 'LICENSE'
   workflow_dispatch:
 
-  pull_request:
-    paths-ignore:
-      - 'README.md'
-    branches:
-      - main
-  
 jobs:
-  test-package-macos:
-    runs-on: macos-latest
+  test-source:
+    strategy:
+      matrix:
+        os:
+          - macos-latest
+          - ubuntu-latest
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Download test IPA
         run: |
-          wget -nc -O ${GITHUB_WORKSPACE}/Taurine.ipa https://github.com/Odyssey-Team/Taurine/releases/download/1.1.6/Taurine-1.1.6.ipa
-        
-      - name: Run local GitHub action
+          wget -nc -O ${{ github.workspace }}/Taurine.ipa https://github.com/Odyssey-Team/Taurine/releases/download/1.1.6/Taurine-1.1.6.ipa
+      - name: Run Github action
         uses: permasigner/action@main
         with:
-          input: "${GITHUB_WORKSPACE}/Taurine.ipa"
-      
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: TaurineTest-Package-macOS.deb
-          path: ${{ github.workspace }}/permasigner-out/*
-          
-  test-source-macos:
-    runs-on: macos-latest
-    steps:
-      - name: Download test IPA
-        run: |
-          wget -nc -O ${GITHUB_WORKSPACE}/Taurine.ipa https://github.com/Odyssey-Team/Taurine/releases/download/1.1.6/Taurine-1.1.6.ipa
-        
-      - name: Run local GitHub action
-        uses: permasigner/action@main
-        with:
-          input: "${GITHUB_WORKSPACE}/Taurine.ipa"
+          input: "${{ github.workspace }}/Taurine.ipa"
           source: true
-      
-      - name: Upload artifact
+      - name: Upload permasigned test IPA
         uses: actions/upload-artifact@v3
         with:
-          name: TaurineTest-Source-macOS.deb
+          name: test-source-${{ matrix.os }}
           path: ${{ github.workspace }}/permasigner-out/*
-          
-  test-package-linux:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download test IPA
-        run: |
-          wget -nc -O ${GITHUB_WORKSPACE}/Taurine.ipa https://github.com/Odyssey-Team/Taurine/releases/download/1.1.6/Taurine-1.1.6.ipa
-        
-      - name: Run local GitHub action
-        uses: permasigner/action@main
-        with:
-          input: "${GITHUB_WORKSPACE}/Taurine.ipa"
-      
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: TaurineTest-Package-Linux.deb
-          path: ${{ github.workspace }}/permasigner-out/*
-          
-  test-source-linux:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download test IPA
-        run: |
-          wget -nc -O ${GITHUB_WORKSPACE}/Taurine.ipa https://github.com/Odyssey-Team/Taurine/releases/download/1.1.6/Taurine-1.1.6.ipa
-        
-      - name: Run local GitHub action
-        uses: permasigner/action@main
-        with:
-          input: "${GITHUB_WORKSPACE}/Taurine.ipa"
-          source: true
-      
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: TaurineTest-Source-Linux.deb
-          path: ${{ github.workspace }}/permasigner-out/*
-    
