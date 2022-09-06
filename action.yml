@@ -23,12 +23,17 @@ inputs:
     description: 'Extra args to pass to Permasigner'
     required: false
     default: "null"
+  skip-procursus:
+    description: 'Skip installing Procursus on macOS runners'
+    required: false
+    default: false
+  
 
 runs:
   using: "composite"
   steps:
     - name: Set up Procursus
-      if: runner.os == 'macOS'
+      if: runner.os == 'macOS' && inputs.skip-procursus != 'true'
       uses: beerpiss/procursus-action@v1
       with:
         packages: ldid python3 git
