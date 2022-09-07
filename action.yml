@@ -10,7 +10,7 @@ inputs:
   output:
     description: 'Output directory of the deb file'
     required: false
-    default: ${GITHUB_WORKSPACE}/permasigner-out
+    default: "${GITHUB_WORKSPACE}/permasigner-out"
   source:
     description: 'Run from source instead of package'
     required: false
@@ -51,7 +51,7 @@ runs:
             EXTRA_ARGS="$EXTRA_ARGS ${{ inputs.args }}"
         fi
         
-        python3 -m permasigner -p ${{ inputs.input }} -o ${{ inputs.output }} -d
+        python3 -m permasigner -p ${{ inputs.input }} -o ${{ inputs.output }} -d $EXTRA_ARGS
 
 branding:
   icon: box
